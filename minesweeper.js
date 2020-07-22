@@ -90,7 +90,7 @@ function startGame () {
 // 2. Are all of the mines marked?
 function checkForWin () {
   for (let i = 0; i < board.cells.length; i++) {
-    if (board.cells[i].isMine === true && board.cells[i].isMarked === false || board.cells[i].isMine === false && board.cells[i].hidden === true) {
+    if /* board.cells[i].isMine === true && board.cells[i].isMarked === false || */ (board.cells[i].isMine === false && board.cells[i].hidden === true) {
       return;
     }
   }
