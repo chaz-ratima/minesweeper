@@ -11,7 +11,7 @@ var board = {
       isMine: false,
       isMarked: false,
       hidden: true,
-      SurroundingMines: 2
+      surroundingMines: 0
     },
     {
       row:0,
@@ -19,7 +19,15 @@ var board = {
       isMine: false,
       isMarked: false,
       hidden: true,
-      SurroundingMines: 2
+      surroundingMines: 0
+    },
+    {
+      row:0,
+      col: 2,
+      isMine: true,
+      isMarked: false,
+      hidden: true,
+      surroundingMines: 0
     },
     {
       row:1,
@@ -27,24 +35,56 @@ var board = {
       isMine: false,
       isMarked: false,
       hidden: true,
-      SurroundingMines: 2
+      surroundingMines: 0
     },
     {
       row: 1,
       col: 1,
+      isMine: true,
+      isMarked: false,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 1,
+      col: 2,
       isMine: false,
       isMarked: false,
       hidden: true,
-      SurroundingMines: 2
-    }
+      surroundingMines: 0
+    },
+    {
+      row: 2,
+      col: 0,
+      isMine: true,
+      isMarked: false,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 2,
+      col: 1,
+      isMine: false,
+      isMarked: false,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 2,
+      col: 2,
+      isMine: false,
+      isMarked: false,
+      hidden: true,
+      surroundingMines: 0
+    },
   ]
 }
 
-
-
-function startGame () {
   document.addEventListener("click", checkForWin)
   document.addEventListener("contextmenu", checkForWin)
+
+function startGame () {
+
   for (let i = 0; i < board.cells.length; i++) {
     board.cells[i].SurroundingMines = countSurroundingMines(board.cells[i])
   }
@@ -59,12 +99,10 @@ function startGame () {
 // 2. Are all of the mines marked?
 function checkForWin () {
   for (let i = 0; i < board.cells.length; i++) {
-    if (board.cells[i].isMine === true && board.cells[i].isMarked === true) {
-      return;
-    } else if (board.cells[i].isMarked === true && board.cells[i].hidden === true) {
+    if (board.cells[i].isMine === true && board.cells[i].isMarked === false || board.cells[i].isMarked === false && board.cells[i].hidden === true) {
       return;
     } else {
-    lib.displayMessage('You win!')
+      lib.displayMessage('You win!')
     }
   }
 
